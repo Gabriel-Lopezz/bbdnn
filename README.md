@@ -70,6 +70,15 @@ std::vector<Vector> labels {
 nn.train(features, labels, 0.05f, 10000, false);
 ```
 
+Sample output from demo:
+
+```
+Input: 0 0 => Prediction: 0.0049705
+Input: 0 1 => Prediction: 0.989448
+Input: 1 0 => Prediction: 0.987596
+Input: 1 1 => Prediction: 0.0121131
+```
+
 ## Build
 
 This project uses CMake:
