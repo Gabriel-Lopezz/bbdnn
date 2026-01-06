@@ -37,18 +37,19 @@ All library types live in the `bbdnn` namespace.
 
 The demo trains a tiny network on XOR and prints predictions:
 
-1. Build a 2-3-1 network: input layer (2), hidden layer (3), output layer (1).
-2. Use `Linear`, `Tanh`, and `Sigmoid` activations.
-3. Train on XOR samples with `train(features, labels, learningRate, epochs, false)`.
-4. Use `predict` to get outputs for each input.
+1. Builds a 2-3-1 network: input layer (2), hidden layer (3), output layer (1).
+2. Uses `Linear`, `Tanh`, and `Sigmoid` activations.
+3. Trains on XOR samples with `train(features, labels, learningRate, epochs, isStochastic)`.
+4. Uses `predict` to get outputs for each input.
 
 Key snippet from the demo:
 
 ```cpp
-NeuralNetwork nn(42, {
+NeuralNetwork nn(seed, {
     DenseLayer(2, Activation::Linear()),
-    DenseLayer(3, Activation::Tanh()),
-    DenseLayer(1, Activation::Sigmoid())
+    DenseLayer(8, Activation::Tanh()),
+    DenseLayer(8, Activation::Tanh()),
+    DenseLayer(1, Activation::Sigmoid()),
 });
 
 std::vector<Vector> features {
@@ -65,6 +66,7 @@ std::vector<Vector> labels {
     Vector{0.0f},
 };
 
+// Performs full-batch training `epochs` times
 nn.train(features, labels, 0.05f, 10000, false);
 ```
 
